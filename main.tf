@@ -61,36 +61,14 @@ resource "aws_alb_listener" "listener_service" {
 # ECS Task Definition
 resource "aws_ecs_task_definition" "task_definition" {
   family                   = var.service_name
-  requires_compatibilities = ["FARGATE"]
+  requires_compatibilities = var.requires_compatibilities
   network_mode             = "awsvpc"
   cpu                      = var.cpu
   memory                   = var.ram
-  execution_role_arn       = data.aws_iam_role.execution_role_arn_data.arn
-  task_role_arn            = data.aws_iam_role.task_role_arn_data.arn
-  container_definitions    = <<TASK_DEFINITION
-[
-  {
-    "name": "${var.service_name}",
-    "image": "${aws_ecr_repository.ecr.repository_url}:latest",
-    "essential": true,
-    "portMappings": [
-      {
-        "containerPort": ${var.service_port},
-        "hostPort": ${var.service_port},
-        "protocol": "tcp"
-      }
-    ],
-    "logConfiguration": {
-      "logDriver": "awslogs",
-      "options": {
-        "awslogs-group": "${aws_cloudwatch_log_group.cloud_watch_logs.name}",
-        "awslogs-region": "${var.aws_region}",
-        "awslogs-stream-prefix": "ecs"
-      }
-    }
-  }
-]
-TASK_DEFINITION
+  execution_role_arn       = var.execution_role_arn
+  task_role_arn            = var.task_role_arn
+  container_definitions    = jsonencode(var.container_definitions)
+
   runtime_platform {
     operating_system_family = "LINUX"
     cpu_architecture        = "X86_64"
@@ -103,7 +81,7 @@ TASK_DEFINITION
 
 # ECS Service
 resource "aws_ecs_service" "ecs_services" {
-  name                              = var.
+  name                              = var.service_name
   cluster                           = var.cluster_name
   task_definition                   = aws_ecs_task_definition.task_definition.arn
   desired_count                     = var.desired_task

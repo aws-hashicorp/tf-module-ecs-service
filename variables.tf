@@ -15,7 +15,6 @@ variable "tags" {
 }
 
 # Target Group Variables
-
 variable "target_group_name" {
   description = "The name of the target group"
   type        = string
@@ -104,11 +103,38 @@ variable "ram" {
   type        = number
 }
 
-variable "aws_region" {
-  description = "The AWS region"
+variable "execution_role_arn" {
+  description = "The execution role ARN for the ECS task"
   type        = string
 }
 
+variable "task_role_arn" {
+  description = "The task role ARN for the ECS task"
+  type        = string
+}
+
+variable "requires_compatibilities" {
+  description = "The launch type required for the task"
+  type        = list(string)
+}
+
+variable "container_definitions" {
+  description = "The container definitions for the ECS task"
+  type = list(object({
+    name      = string
+    image     = string
+    essential = bool
+    portMappings = list(object({
+      containerPort = number
+      hostPort      = number
+      protocol      = string
+    }))
+    logConfiguration = object({
+      logDriver = string
+      options   = map(string)
+    })
+  }))
+}
 
 # Service Variables
 variable "service_name" {

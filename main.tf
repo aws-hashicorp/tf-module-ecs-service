@@ -16,7 +16,7 @@ resource "aws_ecr_repository" "ecr" {
   }
 }
 
-# ALB Target Group
+/* # ALB Target Group
 resource "aws_alb_target_group" "target_group" {
   name             = "tg-${var.target_group_name}"
   port             = var.target_group_port
@@ -204,5 +204,5 @@ resource "aws_cloudwatch_metric_alarm" "service_cpu_low" {
     ServiceName = var.service_name
   }
 
-  alarm_actions = [aws_appautoscaling_policy.down.arn]
+  alarm_actions = [aws_appautoscaling_policy.down.arn] */
 }

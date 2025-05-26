@@ -1,8 +1,3 @@
-variable "vpc_id" {
-  description = "The ID of the VPC"
-  type        = string
-}
-
 variable "service_name" {
   description = "The name of the ECS service"
   type        = string
@@ -14,7 +9,7 @@ variable "tags" {
   default     = {}
 }
 
-# Target Group Variables
+/* # Target Group Variables
 variable "target_group_name" {
   description = "The name of the target group"
   type        = string
@@ -119,21 +114,8 @@ variable "requires_compatibilities" {
 }
 
 variable "container_definitions" {
-  description = "The container definitions for the ECS task"
-  type = list(object({
-    name      = string
-    image     = string
-    essential = bool
-    portMappings = list(object({
-      containerPort = number
-      hostPort      = number
-      protocol      = string
-    }))
-    logConfiguration = object({
-      logDriver = string
-      options   = map(string)
-    })
-  }))
+  description = "The JSON string that describes the container definitions for the task"
+  type        = string
 }
 
 # Service Variables
@@ -204,3 +186,4 @@ variable "cpu_low_threshold" {
   description = "The CPU utilization threshold for scaling down"
   type        = number
 }
+ */

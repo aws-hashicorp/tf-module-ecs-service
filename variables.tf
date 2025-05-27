@@ -1,3 +1,4 @@
+# Global Variables
 variable "service_name" {
   description = "The name of the ECS service"
   type        = string
@@ -9,7 +10,12 @@ variable "tags" {
   default     = {}
 }
 
-/* # Target Group Variables
+variable "vpc_id" {
+  description = "The ID of the VPC"
+  type        = string
+}
+
+# Target Group Variables
 variable "target_group_name" {
   description = "The name of the target group"
   type        = string
@@ -65,7 +71,7 @@ variable "health_check_path" {
   type        = string
 }
 
-# Load Balancer Variables
+/*# Load Balancer Variables
 variable "load_balancer_arn" {
   description = "The ARN of the load balancer"
   type        = string

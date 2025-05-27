@@ -14,7 +14,7 @@ resource "aws_ecr_repository" "ecr" {
   tags = var.tags
 }
 
-/* # ALB Target Group
+# ALB Target Group
 resource "aws_alb_target_group" "target_group" {
   name             = "tg-${var.target_group_name}"
   port             = var.target_group_port
@@ -33,12 +33,10 @@ resource "aws_alb_target_group" "target_group" {
     path                = var.health_check_path
   }
 
-  tags = {
-    tags = var.tags
-  }
+  tags = var.tags
 }
 
-# ALB Listener
+/*# ALB Listener
 resource "aws_alb_listener" "listener_service" {
   load_balancer_arn = var.load_balancer_arn
   port              = var.listener_port

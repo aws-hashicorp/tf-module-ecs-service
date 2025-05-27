@@ -144,7 +144,7 @@ resource "aws_ecs_service" "ecs_services" {
   }
 
   tags = var.tags
-} */
+}
 
 /*# ECS Auto Scaling
 resource "aws_appautoscaling_target" "target" {

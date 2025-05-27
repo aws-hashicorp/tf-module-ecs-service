@@ -11,9 +11,7 @@ resource "aws_ecr_repository" "ecr" {
     scan_on_push = true
   }
 
-  tags = {
-    tags = var.tags
-  }
+  tags = var.tags
 }
 
 /* # ALB Target Group
@@ -204,5 +202,5 @@ resource "aws_cloudwatch_metric_alarm" "service_cpu_low" {
     ServiceName = var.service_name
   }
 
-  alarm_actions = [aws_appautoscaling_policy.down.arn] */
-}
+  alarm_actions = [aws_appautoscaling_policy.down.arn]
+}*/

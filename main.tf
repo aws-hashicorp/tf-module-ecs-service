@@ -41,7 +41,6 @@ resource "aws_alb_listener" "listener_service" {
   load_balancer_arn = var.load_balancer_arn
   port              = var.listener_port
   protocol          = var.listener_protocol
-  certificate_arn   = var.listener_protocol == "HTTPS" ? var.certificate_arn : ""
 
   default_action {
     target_group_arn = aws_alb_target_group.target_group.id

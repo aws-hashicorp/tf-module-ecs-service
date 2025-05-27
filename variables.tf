@@ -15,6 +15,48 @@ variable "vpc_id" {
   type        = string
 }
 
+# --- Security Group Variables ---
+variable "security_group_name" {
+  description = "The name of the security group"
+  type        = string
+}
+
+variable "allowed_cidrs" {
+  description = "The CIDR blocks to allow"
+  type        = list(string)
+  default     = []
+}
+
+variable "allowed_security_groups" {
+  description = "The security groups to allow"
+  type        = list(string)
+  default     = []
+}
+
+variable "allowed_prefix_list_ids" {
+  description = "The prefix list IDs to allow"
+  type        = list(string)
+  default     = []
+}
+
+variable "sg_listener_port_from" {
+  description = "The starting port for the security group listener"
+  type        = number
+  default     = 80
+}
+
+variable "sg_listener_port_to" {
+  description = "The ending port for the security group listener"
+  type        = number
+  default     = 80
+}
+
+variable "sg_listener_protocol" {
+  description = "The protocol for the security group listener"
+  type        = string
+  default     = "tcp"
+}
+
 # Target Group Variables
 variable "target_group_name" {
   description = "The name of the target group"

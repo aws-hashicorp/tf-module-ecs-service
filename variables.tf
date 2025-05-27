@@ -161,7 +161,7 @@ variable "container_definitions" {
   type        = string
 }
 
-/*# Service Variables
+# Service Variables
 variable "service_name" {
   description = "The name of the ECS service"
   type        = string
@@ -197,7 +197,7 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
-# Auto Scaling Variables
+/*# Auto Scaling Variables
 variable "min_capacity" {
   description = "The minimum capacity for the auto scaling group"
   type        = number

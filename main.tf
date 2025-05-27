@@ -117,7 +117,7 @@ resource "aws_ecs_task_definition" "task_definition" {
   tags = var.tags
 }
 
-/* # ECS Service
+# ECS Service
 resource "aws_ecs_service" "ecs_services" {
   name                              = var.service_name
   cluster                           = var.cluster_name

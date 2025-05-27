@@ -51,7 +51,7 @@ resource "aws_alb_listener" "listener_service" {
 
 }
 
-/*# ECS Task Definition
+# ECS Task Definition
 resource "aws_ecs_task_definition" "task_definition" {
   family                   = var.service_name
   requires_compatibilities = var.requires_compatibilities
@@ -60,19 +60,17 @@ resource "aws_ecs_task_definition" "task_definition" {
   memory                   = var.ram
   execution_role_arn       = var.execution_role_arn
   task_role_arn            = var.task_role_arn
-  container_definitions    = jsonencode(var.container_definitions)
+  container_definitions    = var.container_definitions
 
   runtime_platform {
     operating_system_family = "LINUX"
     cpu_architecture        = "X86_64"
   }
 
-  tags = {
-    tags = var.tags
-  }
+  tags = var.tags
 }
 
-# ECS Service
+/*# ECS Service
 resource "aws_ecs_service" "ecs_services" {
   name                              = var.service_name
   cluster                           = var.cluster_name

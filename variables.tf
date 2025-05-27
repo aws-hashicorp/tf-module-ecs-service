@@ -88,7 +88,7 @@ variable "listener_protocol" {
 }
 
 
-/*# Task Definition Variables
+# Task Definition Variables
 variable "cpu" {
   description = "The number of CPU units to allocate to the task"
   type        = number
@@ -119,7 +119,7 @@ variable "container_definitions" {
   type        = string
 }
 
-# Service Variables
+/*# Service Variables
 variable "service_name" {
   description = "The name of the ECS service"
   type        = string

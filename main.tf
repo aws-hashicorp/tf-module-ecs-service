@@ -128,7 +128,7 @@ resource "aws_ecs_service" "ecs_services" {
   health_check_grace_period_seconds = var.grace_period
 
   network_configuration {
-    security_groups  = [var.security_group_id]
+    security_groups  = [aws_security_group.sg_ecs_service.id]
     subnets          = var.subnet_ids
     assign_public_ip = false
   }

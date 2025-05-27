@@ -182,11 +182,6 @@ variable "grace_period" {
   type        = number
 }
 
-variable "security_group_id" {
-  description = "The ID of the security group"
-  type        = string
-}
-
 variable "subnet_ids" {
   description = "The IDs of the subnets"
   type        = list(string)

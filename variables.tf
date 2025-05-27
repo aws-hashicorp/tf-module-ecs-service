@@ -162,11 +162,6 @@ variable "container_definitions" {
 }
 
 # Service Variables
-variable "service_name" {
-  description = "The name of the ECS service"
-  type        = string
-}
-
 variable "service_port" {
   description = "The port for the ECS service"
   type        = number

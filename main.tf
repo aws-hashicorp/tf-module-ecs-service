@@ -1,5 +1,5 @@
 # Security Group
-resource "aws_security_group" "sg_loadbalancer" {
+resource "aws_security_group" "sg_ecs_service" {
   name   = "${var.security_group_name}-sg"
   vpc_id = var.vpc_id
 

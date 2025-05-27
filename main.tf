@@ -45,6 +45,21 @@ resource "aws_security_group" "sg_ecs_service" {
   tags = merge(var.tags, { Name = "${var.security_group_name}-sg" })
 }
 
+# IAM Role
+resource "aws_iam_role" "iam_task_role" {
+  name               = "taskRole-${var.service_name}"
+  assume_role_policy = file("${path.module}/policies/ecs-trusted_policy.json")
+
+  tags = var.tags
+}
+
+# Attach Policies
+resource "aws_iam_role_policy_attachment" "role_policy_attach" {
+  role       = aws_iam_role.iam_task_role.name
+  count      = length(var.permissions_name)
+  policy_arn = element(data.aws_iam_policy.role_permissions_data.*.id, count.index)
+}
+
 # ECR Repository
 resource "aws_ecr_repository" "ecr" {
   name                 = var.service_name
@@ -106,7 +121,7 @@ resource "aws_ecs_task_definition" "task_definition" {
   cpu                      = var.cpu
   memory                   = var.ram
   execution_role_arn       = var.execution_role_arn
-  task_role_arn            = var.task_role_arn
+  task_role_arn            = aws_iam_role.iam_task_role.arn
   container_definitions    = var.container_definitions
 
   runtime_platform {

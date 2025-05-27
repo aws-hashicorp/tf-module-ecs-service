@@ -57,6 +57,13 @@ variable "sg_listener_protocol" {
   default     = "tcp"
 }
 
+# IAM Role Variables
+variable "permissions_name" {
+  description = "List name of policies for role"
+  type        = list(string)
+  default     = []
+}
+
 # Target Group Variables
 variable "target_group_name" {
   description = "The name of the target group"

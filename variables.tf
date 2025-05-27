@@ -71,7 +71,7 @@ variable "health_check_path" {
   type        = string
 }
 
-/*# Load Balancer Variables
+# Load Balancer Variables
 variable "load_balancer_arn" {
   description = "The ARN of the load balancer"
   type        = string
@@ -93,7 +93,7 @@ variable "certificate_arn" {
 }
 
 
-# Task Definition Variables
+/*# Task Definition Variables
 variable "cpu" {
   description = "The number of CPU units to allocate to the task"
   type        = number

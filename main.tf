@@ -36,7 +36,7 @@ resource "aws_alb_target_group" "target_group" {
   tags = var.tags
 }
 
-/*# ALB Listener
+# ALB Listener
 resource "aws_alb_listener" "listener_service" {
   load_balancer_arn = var.load_balancer_arn
   port              = var.listener_port
@@ -48,13 +48,11 @@ resource "aws_alb_listener" "listener_service" {
     type             = "forward"
   }
 
-  tags = {
-    tags = var.tags
-  }
+  tags = var.tags
 
 }
 
-# ECS Task Definition
+/*# ECS Task Definition
 resource "aws_ecs_task_definition" "task_definition" {
   family                   = var.service_name
   requires_compatibilities = var.requires_compatibilities

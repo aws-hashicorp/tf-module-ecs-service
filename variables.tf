@@ -194,7 +194,7 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
-/*# Auto Scaling Variables
+# Auto Scaling Variables
 variable "min_capacity" {
   description = "The minimum capacity for the auto scaling group"
   type        = number
@@ -226,4 +226,4 @@ variable "cpu_low_threshold" {
   description = "The CPU utilization threshold for scaling down"
   type        = number
 }
- */
+ 

@@ -161,7 +161,7 @@ resource "aws_ecs_service" "ecs_services" {
   tags = var.tags
 }
 
-/*# ECS Auto Scaling
+# ECS Auto Scaling
 resource "aws_appautoscaling_target" "target" {
   service_namespace  = "ecs"
   resource_id        = format("service/%s/%s", var.cluster_name, var.service_name)
@@ -215,9 +215,7 @@ resource "aws_cloudwatch_log_group" "cloud_watch_logs" {
   name              = "/ecs/${var.service_name}"
   retention_in_days = var.log_group_retention
 
-  tags = {
-    tags = var.tags
-  }
+  tags = var.tags
 }
 
 # ScalingUp CPU
@@ -256,4 +254,4 @@ resource "aws_cloudwatch_metric_alarm" "service_cpu_low" {
   }
 
   alarm_actions = [aws_appautoscaling_policy.down.arn]
-}*/
+}

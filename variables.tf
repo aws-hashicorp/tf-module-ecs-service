@@ -226,4 +226,3 @@ variable "cpu_low_threshold" {
   description = "The CPU utilization threshold for scaling down"
   type        = number
 }
- 

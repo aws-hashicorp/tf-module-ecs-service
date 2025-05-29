@@ -16,11 +16,6 @@ variable "vpc_id" {
 }
 
 # --- Security Group Variables ---
-variable "security_group_name" {
-  description = "The name of the security group"
-  type        = string
-}
-
 variable "allowed_cidrs" {
   description = "The CIDR blocks to allow"
   type        = list(string)
@@ -146,11 +141,6 @@ variable "cpu" {
 variable "ram" {
   description = "The amount of memory (in MiB) to allocate to the task"
   type        = number
-}
-
-variable "execution_role_arn" {
-  description = "The execution role ARN for the ECS task"
-  type        = string
 }
 
 variable "task_role_arn" {

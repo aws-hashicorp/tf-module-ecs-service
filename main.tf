@@ -1,6 +1,6 @@
 # Security Group
 resource "aws_security_group" "sg_ecs_service" {
-  name   = "${var.security_group_name}-sg"
+  name   = "${var.service_name}-sg"
   vpc_id = var.vpc_id
 
   dynamic "ingress" {
@@ -42,12 +42,12 @@ resource "aws_security_group" "sg_ecs_service" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge(var.tags, { Name = "${var.security_group_name}-sg" })
+  tags = merge(var.tags, { Name = "${var.service_name}-sg" })
 }
 
 # IAM Role
 resource "aws_iam_role" "iam_task_role" {
-  name               = "taskRole-${var.service_name}"
+  name               = "taskAndExecuteRole-${var.service_name}"
   assume_role_policy = file("${path.module}/policies/ecs-trusted_policy.json")
 
   tags = var.tags
@@ -120,7 +120,7 @@ resource "aws_ecs_task_definition" "task_definition" {
   network_mode             = "awsvpc"
   cpu                      = var.cpu
   memory                   = var.ram
-  execution_role_arn       = var.execution_role_arn
+  execution_role_arn       = aws_iam_role.iam_task_role.arn
   task_role_arn            = aws_iam_role.iam_task_role.arn
   container_definitions    = var.container_definitions
 

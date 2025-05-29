@@ -1,4 +1,4 @@
-# Global Variables
+# --- Global Variables ---
 variable "service_name" {
   description = "The name of the ECS service"
   type        = string
@@ -52,14 +52,14 @@ variable "sg_listener_protocol" {
   default     = "tcp"
 }
 
-# IAM Role Variables
+# --- IAM Role Variables ---
 variable "permissions_name" {
   description = "List name of policies for role"
   type        = list(string)
   default     = []
 }
 
-# Target Group Variables
+# --- Target Group Variables ---
 variable "target_group_name" {
   description = "The name of the target group"
   type        = string
@@ -115,7 +115,7 @@ variable "health_check_path" {
   type        = string
 }
 
-# Load Balancer Variables
+# --- Load Balancer Variables ---
 variable "load_balancer_arn" {
   description = "The ARN of the load balancer"
   type        = string
@@ -131,6 +131,21 @@ variable "listener_protocol" {
   type        = string
 }
 
+# --- Listener Rule Variables ---
+variable "target_group_arn" {
+  description = "The ARN of the target group"
+  type        = string
+}
+
+variable "listener_rule_priority" {
+  description = "The priority for the listener rule"
+  type        = number
+}
+
+variable "listener_rule_path_patterns" {
+  description = "The path patterns for the listener rule"
+  type        = list(string)
+}
 
 # Task Definition Variables
 variable "cpu" {

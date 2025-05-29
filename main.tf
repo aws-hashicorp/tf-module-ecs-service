@@ -110,7 +110,27 @@ resource "aws_alb_listener" "listener_service" {
   }
 
   tags = var.tags
+}
 
+# Listener Rule
+resource "aws_lb_listener_rule" "listener_rule_set" {
+  listener_arn = aws_alb_listener.listener_service.arn
+  priority     = var.listener_rule_priority
+
+  action {
+    type             = "forward"
+    target_group_arn = var.target_group_arn
+  }
+
+  condition {
+    path_pattern {
+      values = var.listener_rule_path_patterns
+    }
+  }
+
+  tags = {
+    Name = "${var.service_name}"
+  }
 }
 
 # ECS Task Definition

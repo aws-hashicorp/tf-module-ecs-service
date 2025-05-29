@@ -132,6 +132,12 @@ variable "listener_protocol" {
 }
 
 # --- Listener Rule Variables ---
+variable "create_listener_rule" {
+  description = "Whether to create a listener rule"
+  type        = bool
+  default     = true
+}
+
 variable "target_group_arn" {
   description = "The ARN of the target group"
   type        = string

@@ -114,6 +114,7 @@ resource "aws_alb_listener" "listener_service" {
 
 # Listener Rule
 resource "aws_lb_listener_rule" "listener_rule_set" {
+  count = var.create_listener_rule ? 1 : 0
   listener_arn = aws_alb_listener.listener_service.arn
   priority     = var.listener_rule_priority
 

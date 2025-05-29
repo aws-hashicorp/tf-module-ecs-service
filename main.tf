@@ -114,13 +114,13 @@ resource "aws_alb_listener" "listener_service" {
 
 # Listener Rule
 resource "aws_lb_listener_rule" "listener_rule_set" {
-  count = var.create_listener_rule ? 1 : 0
-  listener_arn = aws_alb_listener.listener_service.arn
+  count        = var.create_listener_rule ? 1 : 0
+  listener_arn = var.target_group_arn
   priority     = var.listener_rule_priority
 
   action {
     type             = "forward"
-    target_group_arn = var.target_group_arn
+    target_group_arn = aws_alb_target_group.target_group.arn
   }
 
   condition {

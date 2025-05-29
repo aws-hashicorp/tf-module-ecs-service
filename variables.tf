@@ -143,11 +143,6 @@ variable "ram" {
   type        = number
 }
 
-variable "task_role_arn" {
-  description = "The task role ARN for the ECS task"
-  type        = string
-}
-
 variable "requires_compatibilities" {
   description = "The launch type required for the task"
   type        = list(string)

@@ -200,6 +200,21 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
+variable "capacity_provider_strategy" {
+  description = "Capacity provider strategy for ECS service"
+  type = list(object({
+    capacity_provider = string
+    weight            = number
+    base              = number
+  }))
+}
+
+variable "launch_type" {
+  description = "The launch template of the ECS cluster"
+  type        = string
+  default     = "FARGATE"
+}
+
 # Auto Scaling Variables
 variable "min_capacity" {
   description = "The minimum capacity for the auto scaling group"

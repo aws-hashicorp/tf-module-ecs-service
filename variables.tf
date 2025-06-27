@@ -141,16 +141,19 @@ variable "create_listener_rule" {
 variable "target_group_arn" {
   description = "The ARN of the target group"
   type        = string
+  default     = ""
 }
 
 variable "listener_rule_priority" {
   description = "The priority for the listener rule"
   type        = number
+  default     = 1
 }
 
 variable "listener_rule_path_patterns" {
   description = "The path patterns for the listener rule"
   type        = list(string)
+  default     = []
 }
 
 # Task Definition Variables
